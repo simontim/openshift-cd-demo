@@ -6,7 +6,7 @@ labels:
 metadata:
   annotations:
     iconClass: icon-jenkins
-    tags: instant-app,jenkins,gogs,nexus,cicd
+    tags: instant-app,jenkins,gogs,nexus,cicd,selenium
   name: cicd
 message: "Use the following credentials for login:\nJenkins: use your OpenShift credentials\nNexus: admin/admin123\nSonarQube: admin/admin\nGogs Git Server: gogs/gogs"
 parameters:
@@ -344,6 +344,10 @@ objects:
             fi
 
             sleep 10
+            
+            #installing selenium
+            
+            oc new-app -f https://raw.githubusercontent.com/simontim/selenium-openshift/master/selenium-template4demos.yaml --param=SERVICE_NAME=selenium
 
             cat <<EOF > /tmp/data.json
             {
