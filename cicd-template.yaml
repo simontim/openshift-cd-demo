@@ -347,7 +347,7 @@ objects:
             
             #installing selenium
             
-            oc new-app -f https://raw.githubusercontent.com/simontim/selenium-openshift/master/selenium-template4demos.yaml --param=SERVICE_NAME=selenium
+            oc new-app docker.io/simontim/selenium-openshift --name=selenium
 
             cat <<EOF > /tmp/data.json
             {
