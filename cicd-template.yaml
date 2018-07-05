@@ -183,6 +183,14 @@ objects:
                   }
                 }
               }
+              
+              stage('Gui Tests with Selenium'){
+                steps{
+                  sh ' '
+                  sh ' '
+                } 
+              }
+              
               stage('Promote to STAGE?') {
                 steps {
                   timeout(time:15, unit:'MINUTES') {
