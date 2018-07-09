@@ -184,11 +184,25 @@ objects:
                 }
               }
               
+              stage('Gui Tests environment'){
+                steps{
+                  sh 'curl https://bootstrap.pypa.io/get-pip.py -o /home/get-pip.py'
+                  sh 'python /home/get-pip.py'
+                  sh 'pip install virtualenv'
+                  sh 'pip install virtualenvwrapper'
+                } 
+              }
+              
               stage('Gui Tests with Selenium'){
                 steps{
-                  sh ' '
-                  sh ' '
-                } 
+                  sh 'virtualenv ocp'
+                  sh 'source ocp/bin/activate'
+                  sh 'curl https://raw.githubusercontent.com/simontim/selenium-openshift/master/requirements.txt'
+                  sh 'curl https://raw.githubusercontent.com/simontim/selenium-openshift/master/test_prova.py'
+                  sh 'pip install -r requirements.txt'
+                  sh 'py.test -v test_prova.py::test_remote'
+                  sh 'deactivate'
+                }
               }
               
               stage('Promote to STAGE?') {
